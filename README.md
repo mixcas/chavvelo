@@ -7,3 +7,4 @@ install
 
 *npm install*
 
+Set the password on the enviroment variable CHAVVELO_PASS

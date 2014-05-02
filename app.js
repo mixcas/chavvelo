@@ -11,7 +11,7 @@ var irc = require("irc");
 // Create the bot name
 var bot = new irc.Client(config.server, config.botName, {
     channels: config.channels,
-    password: "pachecoloco666"
+    password: process.env.CHAVVELO_PASS
 });
 
 // Listen for joins
