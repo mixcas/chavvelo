@@ -1,0 +1,23 @@
+{
+  "name": "chavvelo",
+  "version": "0.0.1",
+  "description": "simple irc bot for #chavvos @ irc.rizon.net",
+  "main": "app.js",
+  "dependencies": {
+    "irc": "~0.3.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mixcas/chavvelo.git"
+  },
+  "author": "cas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mixcas/chavvelo/issues"
+  },
+  "homepage": "https://github.com/mixcas/chavvelo"
+}
