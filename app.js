@@ -7,6 +7,7 @@ var config = {
 
 // Get the lib
 var irc = require("irc");
+var get = require('get-json-plz');
 
 // Create the bot name
 var bot = new irc.Client(config.server, config.botName, {
@@ -24,7 +25,18 @@ bot.addListener("join", function(channel, who) {
 });
 
 bot.addListener("message", function(from, to, message) {
-    if( message.indexOf('chavvelo') > -1 && message.indexOf('no') > -1 ) {
+    if( message.indexOf('chavvelo') > -1 && /\bno\b/.test(message) ) {
         bot.say(to, 'no que?');
+    }
+    
+    if( message.indexOf('chavvelo') > -1 && /.(ando horny)/.test(message) ) {
+        // Read PornMD feed
+        get('http://www.pornmd.com/getliveterms', function (err, data) {
+            var keywords = data[0].keyword;
+            keywords = keywords.split(' ').join('+');
+            
+            // Return porn link  
+            bot.say(to, 'date http://www.pornmd.com/straight/' + keywords); 
+        });
     }
 });
