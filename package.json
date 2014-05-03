@@ -4,7 +4,8 @@
   "description": "simple irc bot for #chavvos @ irc.rizon.net",
   "main": "app.js",
   "dependencies": {
-    "irc": "~0.3.6"
+    "irc": "~0.3.6",
+    "get-json-plz": "0.0.2"
   },
   "devDependencies": {},
   "scripts": {
