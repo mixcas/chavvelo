@@ -22,3 +22,9 @@ bot.addListener("join", function(channel, who) {
     else
         bot.say(channel, "que pedo " + who );
 });
+
+bot.addListener("message", function(from, to, message) {
+    if( message.indexOf('chavvelo') > -1 && message.indexOf('no') > -1 ) {
+        bot.say(to, 'no que?');
+    }
+});
