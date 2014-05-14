@@ -49,12 +49,10 @@ bot.addListener("message", function(from, to, message) {
   // Log chat ****
   
   var d = new Date();
-  var curr_date = d.getDate();
-  var curr_month = d.getMonth();
-  var curr_year = d.getFullYear();  
-  var chatlog_name = curr_date + "-" + curr_month + "-" + curr_year + '.log';
-  var chatllog_msg = d + ' ' + from + ': ' + message + '\n';
-  var chatlog = fs.appendFile('./chatlogs/' + chatlog_name, chatllog_msg, encoding='utf8', function(err) {
+  var chatlog_name = d.getDate() + "-" + d.getMonth() + "-" + d.getFullYear() + '.log';
+  var chatlog_msg = d + ' ' + from + ': ' + message + '\n';
+
+  var chatlog = fs.appendFile('./chatlogs/' + chatlog_name, chatlog_msg, encoding='utf8', function(err) {
     if(err)
       console.log(err);
   });
