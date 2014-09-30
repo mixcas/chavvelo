@@ -1,7 +1,7 @@
 // Create the configuratio
 var config = {
-  channels: ["#chavvos"],
-  server: "irc.rizon.net",
+  channels: ["#test"],
+  server: "irc.xchannel.org",
   botName: "chavvelo"
 };
 
@@ -9,6 +9,8 @@ var config = {
 var irc = require("irc");
 var get = require('get-json-plz');
 var fs = require('fs')
+var request = require('request');
+var cheerio = require('cheerio');
 
 // Create the bot name
 var bot = new irc.Client(config.server, config.botName, {
@@ -20,7 +22,7 @@ var bot = new irc.Client(config.server, config.botName, {
 bot.addListener("join", function(channel, who) {
   // Welcome them in!
   if ( who == config.botName )
-    bot.say(channel, "what farto #chavvos! 0/");
+    bot.say(channel, "que paso cuates 0/");
   else
     bot.say(channel, "que pedo " + who );
 });
@@ -46,6 +48,21 @@ bot.addListener("message", function(from, to, message) {
     });
   }
 
+  var urlRegexp = /\b((?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))/ig;
+
+  var matchUrl = urlRegexp.exec(message);
+
+  if( matchUrl[0] ) {
+  request(matchUrl[0], function (error, response, html) {
+    if (!error && response.statusCode == 200) {
+      $ = cheerio.load(html);
+      bot.say(to, 'Link: ' + $('title').text() );
+      console.log($('title').text() );
+    }
+  });
+    console.log('a');
+  }
+
   // Log chat ****
   
   var d = new Date();
@@ -62,3 +79,4 @@ bot.addListener("message", function(from, to, message) {
 bot.addListener('error', function(message) {
   bot.say('error: ', message);
 });
+
